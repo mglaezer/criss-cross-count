@@ -1837,6 +1837,15 @@
             if (position === 'above') {
                 offEl.insertBefore(label, offEl.firstChild);
                 label.style.marginBottom = '4px';
+                const offLabel = document.createElement('div');
+                offLabel.className = 'zone-oval ua-label';
+                offLabel.textContent = 'off';
+                offLabel.style.color = color;
+                offLabel.style.fontWeight = 'bold';
+                offLabel.style.fontSize = '12px';
+                offLabel.style.marginTop = '4px';
+                offLabel.style.textShadow = '0 0 4px #1e2a4a, 0 0 4px #1e2a4a';
+                offEl.appendChild(offLabel);
             } else {
                 offEl.appendChild(label);
                 label.style.marginTop = '4px';
