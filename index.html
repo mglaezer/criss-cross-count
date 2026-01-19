@@ -1735,7 +1735,7 @@
                 oval.className = 'zone-oval ua-oval';
                 oval.style.position = 'absolute';
                 oval.style.border = `3px solid ${color}`;
-                oval.style.borderRadius = '50%';
+                oval.style.borderRadius = (ovalWidth / 2) + 'px';
                 oval.style.pointerEvents = 'none';
                 oval.style.zIndex = '10';
                 oval.style.left = '50%';
@@ -1899,7 +1899,6 @@
                 oval.className = 'zone-oval';
                 oval.style.position = 'absolute';
                 oval.style.border = `3px solid ${zone.color}`;
-                oval.style.borderRadius = '50%';
                 oval.style.pointerEvents = 'none';
                 oval.style.zIndex = '10';
                 oval.style.display = 'flex';
@@ -1908,13 +1907,24 @@
                 oval.style.flexDirection = 'column';
 
                 const pointWidth = 100 / 6;
-                const left = zone.startIdx * pointWidth;
-                const width = 3 * pointWidth;
+                const gap = 0.2;
+                const left = zone.startIdx * pointWidth + (zone.startIdx === 0 ? 0 : gap);
+                const width = 3 * pointWidth - gap;
+
+                const sampleChecker = boardEl.querySelector('.checker');
+                const checkerSize = sampleChecker ? sampleChecker.offsetHeight : 40;
+                const borderRadius = checkerSize / 2 + 3;
+                const ovalHeight = checkerSize * 5 + 3;
 
                 oval.style.left = `${left}%`;
                 oval.style.width = `${width}%`;
-                oval.style.top = '2%';
-                oval.style.height = '96%';
+                oval.style.height = ovalHeight + 'px';
+                oval.style.borderRadius = borderRadius + 'px';
+                if (zone.pos === 'top') {
+                    oval.style.top = '0';
+                } else {
+                    oval.style.bottom = '0';
+                }
 
                 const label = document.createElement('div');
                 label.className = 'zone-label';
