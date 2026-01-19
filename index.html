@@ -1519,13 +1519,17 @@
             const bOff = blackOff(board);
 
             const whiteOffEl = document.getElementById('white-off');
-            whiteOffEl.innerHTML = '<div class="off-label">OFF</div>';
+            whiteOffEl.innerHTML = '';
             if (wOff > 0) {
                 const checker = document.createElement('div');
                 checker.className = 'checker white off-checker';
                 checker.textContent = wOff;
                 whiteOffEl.appendChild(checker);
             }
+            const whiteOffLabel = document.createElement('div');
+            whiteOffLabel.className = 'off-label';
+            whiteOffLabel.textContent = 'OFF';
+            whiteOffEl.appendChild(whiteOffLabel);
 
             const blackOffEl = document.getElementById('black-off');
             blackOffEl.innerHTML = '<div class="off-label">OFF</div>';
@@ -1831,15 +1835,6 @@
             if (isWhiteOff) {
                 offEl.insertBefore(label, offEl.firstChild);
                 label.style.marginBottom = '4px';
-                const offLabel = document.createElement('div');
-                offLabel.className = 'zone-oval ua-label';
-                offLabel.textContent = 'off';
-                offLabel.style.color = color;
-                offLabel.style.fontWeight = 'bold';
-                offLabel.style.fontSize = '12px';
-                offLabel.style.marginTop = '4px';
-                offLabel.style.textShadow = '0 0 4px #1e2a4a, 0 0 4px #1e2a4a';
-                offEl.appendChild(offLabel);
             } else {
                 offEl.appendChild(label);
                 label.style.marginTop = '4px';
