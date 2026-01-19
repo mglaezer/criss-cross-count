@@ -1791,18 +1791,11 @@
 
         function addBarOval(barEl, color, uaValue) {
             barEl.style.position = 'relative';
-            const oval = document.createElement('div');
-            oval.className = 'zone-oval ua-oval';
-            oval.style.position = 'absolute';
-            oval.style.border = `3px solid ${color}`;
-            oval.style.borderRadius = '50%';
-            oval.style.pointerEvents = 'none';
-            oval.style.zIndex = '10';
-            oval.style.left = '10%';
-            oval.style.width = '80%';
-            oval.style.top = '30%';
-            oval.style.height = '40%';
-            barEl.appendChild(oval);
+            const checker = barEl.querySelector('.checker');
+            if (checker) {
+                checker.style.outline = `3px solid ${color}`;
+                checker.style.outlineOffset = '2px';
+            }
 
             const label = document.createElement('div');
             label.className = 'zone-oval ua-label';
