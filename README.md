@@ -1,1 +1,3 @@
-https://mglaezer.github.io/criss-cross-count/
+# Criss-Cross Count Trainer
+
+Published at: https://mglaezer.github.io/criss-cross-count/
