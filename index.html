@@ -44,7 +44,7 @@
         @media (min-width: 901px) {
             .container {
                 display: grid;
-                grid-template-columns: 1fr 300px;
+                grid-template-columns: 1fr 380px;
                 grid-template-rows: auto auto auto;
                 row-gap: 4px;
                 column-gap: 20px;
@@ -612,9 +612,8 @@
 
         .explanation-box {
             background: #f7fafc;
-            border-left: 3px solid #3182ce;
             padding: 12px;
-            border-radius: 0 6px 6px 0;
+            border-radius: 6px;
         }
 
         .explanation-box h4 {
@@ -831,7 +830,6 @@
         }
 
         .bottom-left {
-            flex: 2;
             background: #fff;
             border-radius: 10px;
             padding: 16px;
@@ -839,7 +837,6 @@
         }
 
         .bottom-right {
-            flex: 1;
             background: #fff;
             border-radius: 10px;
             padding: 16px;
@@ -992,34 +989,6 @@
         </div>
 
         <div class="sidebar">
-            <div class="card">
-                <h3>References</h3>
-                <div style="font-size: 12px; line-height: 1.6;">
-                    <p style="margin-bottom: 8px;">
-                        <a href="https://docs.google.com/document/d/1HVZ16CDjVmcH_fK2l3giedqwForgpnLmB5aRF_j1pmc/edit?tab=t.0#heading=h.wc0r227g8i1a" target="_blank" style="color: #3182ce; text-decoration: none;">Maxim Glaezer's CCC Method Paper</a>
-                    </p>
-                    <p>
-                        <a href="https://www.bgonline.org/forums/webbbs_config.pl?noframes;read=208404" target="_blank" style="color: #3182ce; text-decoration: none;">Nack Ballard's Explanation</a>
-                    </p>
-                </div>
-            </div>
-            <div class="card">
-                <h3>Legend</h3>
-                <div style="font-size: 12px; line-height: 1.6;">
-                    <p><span style="color:#38a169;font-weight:bold">Green / negative</span> = good for the race</p>
-                    <p><span style="color:#e53e3e;font-weight:bold">Red / positive</span> = bad for the race</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="bottom-pane">
-            <div class="bottom-left">
-                <h3 style="margin-bottom: 12px;">Explanation</h3>
-                <div class="explanation-box" id="step-explanation">
-                    <h4>Select a Step</h4>
-                    <p>Click a step button (1, 2, UA, BB, or =) to see visual highlights and explanation.</p>
-                </div>
-            </div>
             <div class="bottom-right">
                 <h3 style="margin-bottom: 12px;">Calculation</h3>
                 <div class="calculation-display" id="calculation-display">
@@ -1046,6 +1015,34 @@
                 </div>
 
                 <div class="result-comparison" id="result-comparison"></div>
+            </div>
+            <div class="bottom-left">
+                <h3 style="margin-bottom: 12px;">Explanation</h3>
+                <div class="explanation-box" id="step-explanation">
+                    <h4>Select a Step</h4>
+                    <p>Click a step button (1, 2, UA, BB, or =) to see visual highlights and explanation.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-pane">
+            <div class="card">
+                <h3>References</h3>
+                <div style="font-size: 12px; line-height: 1.6;">
+                    <p style="margin-bottom: 8px;">
+                        <a href="https://docs.google.com/document/d/1HVZ16CDjVmcH_fK2l3giedqwForgpnLmB5aRF_j1pmc/edit?tab=t.0#heading=h.wc0r227g8i1a" target="_blank" style="color: #3182ce; text-decoration: none;">Maxim Glaezer's CCC Method Paper</a>
+                    </p>
+                    <p>
+                        <a href="https://www.bgonline.org/forums/webbbs_config.pl?noframes;read=208404" target="_blank" style="color: #3182ce; text-decoration: none;">Nack Ballard's Explanation</a>
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Legend</h3>
+                <div style="font-size: 12px; line-height: 1.6;">
+                    <p><span style="color:#38a169;font-weight:bold">Green / negative</span> = good for the race</p>
+                    <p><span style="color:#e53e3e;font-weight:bold">Red / positive</span> = bad for the race</p>
+                </div>
             </div>
         </div>
     </div>
