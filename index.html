@@ -1801,7 +1801,6 @@
                 const lastCheckerCenter = (lastRect.top + lastRect.height / 2) - pointRect.top;
                 label.style.top = lastCheckerCenter + 'px';
                 label.style.transform = 'translate(-50%, -50%)';
-                label.style.textShadow = '0 0 3px #fff, 0 0 3px #fff';
                 pointEl.appendChild(label);
             }
 
@@ -1855,7 +1854,6 @@
             label.style.left = '50%';
             label.style.transform = 'translateX(-50%)';
             label.style.top = '75%';
-            label.style.textShadow = '0 0 4px #1e2a4a, 0 0 4px #1e2a4a';
             barEl.appendChild(label);
         }
 
@@ -1873,7 +1871,6 @@
             label.style.color = color;
             label.style.fontWeight = 'bold';
             label.style.fontSize = '14px';
-            label.style.textShadow = '0 0 4px #1e2a4a, 0 0 4px #1e2a4a';
 
             if (isWhiteOff) {
                 offEl.insertBefore(label, offEl.firstChild);
@@ -1973,7 +1970,6 @@
                 label.className = 'zone-label';
                 label.style.color = zone.color;
                 label.style.fontWeight = 'bold';
-                label.style.textShadow = '0 0 6px white, 0 0 6px white, 0 0 6px white, 0 0 6px white';
                 label.style.textAlign = 'center';
 
                 const isNarrow = window.innerWidth < 600;
@@ -1981,7 +1977,7 @@
                     label.style.fontSize = isNarrow ? '14px' : '22px';
                     label.innerHTML = `${zone.sign}2 × ${zoneCount} = ${zone.sign}${zoneValue}`;
                 } else {
-                    label.style.fontSize = isNarrow ? '20px' : '32px';
+                    label.style.fontSize = isNarrow ? '28px' : '44px';
                     label.textContent = `${zone.sign}${zoneCount}`;
                 }
                 oval.appendChild(label);
@@ -2057,7 +2053,6 @@
             label.style.color = color;
             label.style.fontWeight = 'bold';
             label.style.fontSize = '18px';
-            label.style.textShadow = '0 0 4px white, 0 0 4px white, 0 0 4px white';
             label.style.zIndex = '15';
 
             const checkerCenterY = checkerRect.top + checkerRect.height / 2 - pointRect.top;
