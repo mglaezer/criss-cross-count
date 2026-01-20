@@ -156,8 +156,6 @@
             display: flex;
             padding: 0 2px;
             background: #fff;
-            margin-left: calc(100% / 15);
-            margin-right: calc(100% / 15);
         }
 
         .point-numbers.top {
@@ -166,6 +164,17 @@
 
         .point-numbers.bottom {
             padding-top: 2px;
+        }
+
+        .side-spacer {
+            flex: 1;
+        }
+
+        .off-spacer {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .point-number-group {
@@ -899,6 +908,7 @@
                 <div class="pip-display top" id="pip-top">Black - Pips: — </div>
 
                 <div class="point-numbers top">
+                    <div class="side-spacer"></div>
                     <div class="point-number-group left">
                         <span class="point-num">13</span>
                         <span class="point-num">14</span>
@@ -916,6 +926,7 @@
                         <span class="point-num">23</span>
                         <span class="point-num">24</span>
                     </div>
+                    <div class="off-spacer"><span class="off-label">OFF</span></div>
                 </div>
 
                 <div class="board-wrapper">
@@ -926,16 +937,13 @@
                         <div class="ua-markers bottom" id="ua-markers-bottom"></div>
                     </div>
                     <div class="off-column">
-                        <div class="off-area" id="black-off">
-                            <div class="off-label">OFF</div>
-                        </div>
-                        <div class="off-area" id="white-off">
-                            <div class="off-label">OFF</div>
-                        </div>
+                        <div class="off-area" id="black-off"></div>
+                        <div class="off-area" id="white-off"></div>
                     </div>
                 </div>
 
                 <div class="point-numbers bottom">
+                    <div class="side-spacer"></div>
                     <div class="point-number-group left">
                         <span class="point-num">12</span>
                         <span class="point-num">11</span>
@@ -953,6 +961,7 @@
                         <span class="point-num">2</span>
                         <span class="point-num">1</span>
                     </div>
+                    <div class="off-spacer"><span class="off-label">OFF</span></div>
                 </div>
 
                 <div class="pip-display bottom" id="pip-bottom">White - Pips: —</div>
@@ -1561,13 +1570,9 @@
                 checker.innerHTML = '<span class="checker-count">' + wOff + '</span>';
                 whiteOffEl.appendChild(checker);
             }
-            const whiteOffLabel = document.createElement('div');
-            whiteOffLabel.className = 'off-label';
-            whiteOffLabel.textContent = 'OFF';
-            whiteOffEl.appendChild(whiteOffLabel);
 
             const blackOffEl = document.getElementById('black-off');
-            blackOffEl.innerHTML = '<div class="off-label">OFF</div>';
+            blackOffEl.innerHTML = '';
             if (bOff > 0) {
                 const checker = document.createElement('div');
                 checker.className = 'checker black off-checker';
