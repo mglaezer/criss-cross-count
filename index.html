@@ -319,21 +319,43 @@
         }
 
         .checker.white {
-            background: radial-gradient(circle at 30% 25%, #ffffff 0%, #fdfcfa 25%, #f2efe9 65%, #e0dcd4 100%);
-            border: 1px solid #c0bdb5;
+            background: conic-gradient(from 0deg, #d0d0d0 0%, #808080 25%, #d0d0d0 50%, #808080 75%, #d0d0d0 100%);
+            border: none;
             color: #333;
-            box-shadow:
-                inset 0 -4px 7px rgba(0,0,0,0.12),
-                0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .checker.white::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 25%, #ffffff 0%, #fdfcfa 25%, #f2efe9 65%, #e0dcd4 100%);
+            z-index: 0;
         }
 
         .checker.black {
-            background: radial-gradient(circle at 30% 25%, #6c7788 0%, #5a6474 35%, #4d5665 70%, #454d5a 100%);
-            border: 1px solid #393f4e;
+            background: conic-gradient(from 0deg, #808890 0%, #606870 25%, #808890 50%, #606870 75%, #808890 100%);
+            border: none;
             color: #fff;
-            box-shadow:
-                inset 0 -3px 6px rgba(0,0,0,0.2),
-                0 2px 4px rgba(0,0,0,0.25);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.35);
+            position: relative;
+        }
+
+        .checker.black::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 25%, #6c7788 0%, #5a6474 35%, #4d5665 70%, #454d5a 100%);
+            z-index: 0;
         }
 
         .checker.stacked {
@@ -345,6 +367,15 @@
             width: var(--checker-size, 40px);
             height: var(--checker-size, 40px);
             aspect-ratio: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .checker-count {
+            position: relative;
+            z-index: 1;
         }
 
         .controls {
@@ -1527,7 +1558,7 @@
             if (wOff > 0) {
                 const checker = document.createElement('div');
                 checker.className = 'checker white off-checker';
-                checker.textContent = wOff;
+                checker.innerHTML = '<span class="checker-count">' + wOff + '</span>';
                 whiteOffEl.appendChild(checker);
             }
             const whiteOffLabel = document.createElement('div');
@@ -1540,7 +1571,7 @@
             if (bOff > 0) {
                 const checker = document.createElement('div');
                 checker.className = 'checker black off-checker';
-                checker.textContent = bOff;
+                checker.innerHTML = '<span class="checker-count">' + bOff + '</span>';
                 blackOffEl.appendChild(checker);
             }
         }
