@@ -1553,7 +1553,7 @@
                     checker.className = `checker ${isBlack ? 'black' : 'white'}`;
                     if (i > 0) checker.classList.add('stacked');
                     if (i === displayCount - 1 && absCount > 5) {
-                        checker.textContent = absCount;
+                        checker.innerHTML = '<span class="checker-count">' + absCount + '</span>';
                     }
                     stack.appendChild(checker);
                 }
