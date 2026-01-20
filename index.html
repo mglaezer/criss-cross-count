@@ -2133,15 +2133,13 @@
                     name: 'UA',
                     title: 'Unit Adjustment (UA)',
                     text: `
-                        <p><span style="color:#3182ce;font-weight:bold">Blue dividers</span> separate the 8 slices (3 points each).</p>
-                        <p>Within each slice, edge points are <strong>+1</strong> and <strong>−1</strong>, center is <strong>0</strong>.</p>
-                        <p><strong>Finding asymmetric checkers:</strong></p>
-                        <p style="margin-left:8px;font-size:12px;">Compare checkers on +1 and −1 edges within each slice (color doesn't matter). Checkers that pair up are <em>symmetric</em> and cancel out. Only <em>unpaired</em> (excess) checkers count:</p>
+                        <p><span style="color:#3182ce;font-weight:bold">Blue Dividers</span> mark 8 zones (3 points each). Within each zone, the center point is <strong>0</strong>, the outer edge (furthest from home) is <strong>+1</strong>, and the inner edge (closest to home) is <strong>-1</strong>.</p>
+                        <p><strong>Finding Asymmetric Checkers:</strong> In each zone, cancel out checkers on the +1 edge against those on the -1 edge (ignore color). Only unpaired checkers count:</p>
                         <ul>
-                            <li><span style="color:#38a169;font-weight:bold">good(green)</span> = excess on −1 edge (negative)</li>
-                            <li><span style="color:#e53e3e;font-weight:bold">bad(red)</span> = excess on +1 edge (positive)</li>
+                            <li><span style="color:#e53e3e;font-weight:bold">Bad (+1)</span>: Excess checkers on the outer edge (furthest from home).</li>
+                            <li><span style="color:#38a169;font-weight:bold">Good (-1)</span>: Excess checkers on the inner edge (closest to home).</li>
                         </ul>
-                        <p><strong>Calculate:</strong> Sum all circled values.</p>
+                        <p><strong>Calculate:</strong> Sum these values across all 8 zones for your final adjustment.</p>
                         <p style="font-size:12px;color:#666;margin-top:8px;">
                             (You can skip UA for an approximate count, typically accurate to within ±5 pips.)
                         </p>
