@@ -5,18 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criss-Cross Count Trainer</title>
     <style>
+        :root {
+            --radius: 0.625rem;
+            --background: oklch(1 0 0);
+            --foreground: oklch(0.145 0 0);
+            --card: oklch(1 0 0);
+            --card-foreground: oklch(0.145 0 0);
+            --primary: oklch(0.205 0 0);
+            --primary-foreground: oklch(0.985 0 0);
+            --secondary: oklch(0.97 0 0);
+            --secondary-foreground: oklch(0.205 0 0);
+            --muted: oklch(0.97 0 0);
+            --muted-foreground: oklch(0.556 0 0);
+            --accent: oklch(0.97 0 0);
+            --accent-foreground: oklch(0.205 0 0);
+            --border: oklch(0.922 0 0);
+            --input: oklch(0.922 0 0);
+            --ring: oklch(0.708 0 0);
+            --good: #38a169;
+            --bad: #e53e3e;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            border-color: var(--border);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: #f5f5f5;
+            font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            background: var(--secondary);
             min-height: 100vh;
-            color: #333;
+            color: var(--foreground);
             padding: 20px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
@@ -30,14 +54,16 @@
         }
 
         header h1 {
-            font-size: 2rem;
-            color: #2c3e50;
+            font-size: 1.875rem;
+            font-weight: 600;
+            letter-spacing: -0.025em;
+            color: var(--foreground);
             margin-bottom: 6px;
         }
 
         header p {
-            color: #666;
-            font-size: 1rem;
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
             margin-bottom: 16px;
         }
 
@@ -86,29 +112,30 @@
         }
 
         .board-section {
-            background: #fff;
-            border-radius: 12px;
+            background: var(--card);
+            border-radius: var(--radius);
             padding: 16px 20px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
         }
 
         .pip-display {
             text-align: center;
             padding: 6px;
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 0.875rem;
+            font-weight: 500;
         }
 
         .pip-display.top {
-            color: #555;
+            color: var(--muted-foreground);
         }
 
         .pip-display.bottom {
-            color: #333;
+            color: var(--foreground);
         }
 
         .pip-display .diff {
-            color: #888;
+            color: var(--muted-foreground);
         }
 
         .board-wrapper {
@@ -148,9 +175,9 @@
         }
 
         .off-label {
-            font-size: 11px;
+            font-size: 0.6875rem;
             color: #8899bb;
-            font-weight: 600;
+            font-weight: 500;
         }
 
         .board-container {
@@ -161,7 +188,7 @@
         .point-numbers {
             display: flex;
             padding: 0 2px;
-            background: #fff;
+            background: var(--card);
         }
 
         .point-numbers.top {
@@ -199,8 +226,8 @@
         .point-num {
             flex: 1;
             text-align: center;
-            font-size: 10px;
-            color: #999;
+            font-size: 0.625rem;
+            color: var(--muted-foreground);
         }
 
         .bar-spacer {
@@ -326,8 +353,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
+            font-size: 0.75rem;
+            font-weight: 600;
             margin: 0;
             box-sizing: border-box;
             flex-shrink: 0;
@@ -402,16 +429,20 @@
         }
 
         .btn {
-            padding: 10px 16px;
-            border: none;
-            border-radius: 6px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            white-space: nowrap;
+            font-size: 0.875rem;
+            font-weight: 500;
+            height: 2.25rem;
+            padding: 0 1rem;
+            gap: 0.5rem;
+            border-radius: calc(var(--radius) - 2px);
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s;
+            outline: none;
         }
 
         .btn-icon {
@@ -419,17 +450,22 @@
         }
 
         .btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            opacity: 0.9;
+        }
+
+        .btn:focus-visible {
+            outline: 2px solid var(--ring);
+            outline-offset: 2px;
         }
 
         .btn-primary {
-            background: #3182ce;
-            color: #fff;
+            background: var(--primary);
+            color: var(--primary-foreground);
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
         }
 
         .btn-success {
-            background: #e53e3e;
+            background: var(--bad);
             color: #fff;
         }
 
@@ -439,19 +475,27 @@
         }
 
         .btn-secondary {
-            background: #718096;
-            color: #fff;
+            background: var(--secondary);
+            color: var(--secondary-foreground);
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
         }
 
         .btn-outline {
-            background: #fff;
-            border: 2px solid #3182ce;
-            color: #3182ce;
+            background: var(--background);
+            border: 1px solid var(--border);
+            color: var(--foreground);
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        }
+
+        .btn-outline:hover {
+            background: var(--accent);
+            color: var(--accent-foreground);
         }
 
         .btn-outline.active {
-            background: #3182ce;
-            color: #fff;
+            background: var(--primary);
+            color: var(--primary-foreground);
+            border-color: var(--primary);
         }
 
         .sidebar {
@@ -461,27 +505,30 @@
         }
 
         .card {
-            background: #fff;
-            border-radius: 10px;
-            padding: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
         }
 
         .card h3 {
-            color: #2c3e50;
+            color: var(--card-foreground);
             margin-bottom: 12px;
-            font-size: 0.95rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
             display: flex;
             align-items: center;
             gap: 8px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border);
             padding-bottom: 8px;
         }
 
         .steps-label {
-            font-size: 12px;
-            font-weight: 600;
-            color: #4a5568;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--muted-foreground);
             margin-bottom: 6px;
         }
 
@@ -498,29 +545,31 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11px;
-            font-weight: bold;
+            font-size: 0.6875rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s;
-            background: #e2e8f0;
-            color: #718096;
+            transition: all 0.15s;
+            background: var(--secondary);
+            color: var(--muted-foreground);
+            border: 1px solid var(--border);
         }
 
         .step-dot:hover {
-            background: #cbd5e0;
+            background: var(--accent);
         }
 
         .step-dot.active {
-            background: #3182ce;
-            color: #fff;
+            background: var(--primary);
+            color: var(--primary-foreground);
+            border-color: var(--primary);
         }
 
         .calculation-display {
-            background: #f7fafc;
-            border-radius: 6px;
+            background: var(--muted);
+            border-radius: calc(var(--radius) - 2px);
             padding: 12px;
-            font-family: 'Monaco', 'Menlo', monospace;
-            font-size: 11px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.6875rem;
             line-height: 1.7;
         }
 
@@ -529,7 +578,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 3px 0;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid var(--border);
         }
 
         .calc-row:last-child {
@@ -537,38 +586,38 @@
         }
 
         .calc-row.highlight {
-            background: #ebf8ff;
+            background: var(--accent);
             margin: 4px -12px -12px -12px;
             padding: 6px 12px;
-            border-radius: 0 0 6px 6px;
+            border-radius: 0 0 calc(var(--radius) - 2px) calc(var(--radius) - 2px);
             border: none;
         }
 
         .calc-label {
-            color: #718096;
-            font-size: 10px;
+            color: var(--muted-foreground);
+            font-size: 0.625rem;
         }
 
         .calc-formula {
-            color: #2d3748;
+            color: var(--foreground);
         }
 
         .calc-result {
-            color: #e53e3e;
-            font-weight: bold;
+            color: var(--bad);
+            font-weight: 600;
         }
 
         .calc-result.negative {
-            color: #38a169;
+            color: var(--good);
         }
 
         .result-box {
-            background: #f7fafc;
-            border-radius: 8px;
+            background: var(--muted);
+            border-radius: calc(var(--radius) - 2px);
             padding: 12px;
             text-align: center;
             margin-top: 12px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border);
         }
 
         .result-grid {
@@ -579,61 +628,62 @@
         }
 
         .result-item .label {
-            font-size: 10px;
-            color: #718096;
+            font-size: 0.625rem;
+            color: var(--muted-foreground);
             margin-bottom: 2px;
         }
 
         .result-item .value {
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        .result-item .value.black {
-            color: #1a202c;
-        }
-
-        .result-item .value.white {
-            color: #718096;
-        }
-
-        .result-item .value.diff {
-            color: #3182ce;
-        }
-
-        .result-comparison {
-            font-size: 11px;
-            color: #718096;
-        }
-
-        .result-comparison .match {
-            color: #e53e3e;
-        }
-
-        .explanation-box {
-            background: #f7fafc;
-            padding: 12px;
-            border-radius: 6px;
-        }
-
-        .explanation-box h4 {
-            color: #2c3e50;
-            margin-bottom: 8px;
-            font-size: 13px;
+            font-size: 1.125rem;
             font-weight: 600;
         }
 
+        .result-item .value.black {
+            color: var(--foreground);
+        }
+
+        .result-item .value.white {
+            color: var(--muted-foreground);
+        }
+
+        .result-item .value.diff {
+            color: var(--foreground);
+        }
+
+        .result-comparison {
+            font-size: 0.6875rem;
+            color: var(--muted-foreground);
+        }
+
+        .result-comparison .match {
+            color: var(--bad);
+        }
+
+        .explanation-box {
+            background: var(--muted);
+            padding: 12px;
+            border-radius: calc(var(--radius) - 2px);
+        }
+
+        .explanation-box h4 {
+            color: var(--foreground);
+            margin-bottom: 8px;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+
         .explanation-box p {
-            font-size: 12px;
+            font-size: 0.75rem;
             line-height: 1.5;
-            color: #4a5568;
+            color: var(--muted-foreground);
             margin-bottom: 6px;
         }
 
         .explanation-box ul, .explanation-box ol {
-            font-size: 12px;
+            font-size: 0.75rem;
             line-height: 1.6;
-            color: #4a5568;
+            color: var(--muted-foreground);
             margin: 6px 0 6px 16px;
             padding: 0;
         }
@@ -648,40 +698,40 @@
             gap: 3px;
             margin: 10px 0;
             padding: 8px;
-            background: #f7fafc;
-            border-radius: 6px;
+            background: var(--muted);
+            border-radius: calc(var(--radius) - 2px);
         }
 
         .slice-box {
             text-align: center;
             padding: 4px 2px;
             border-radius: 3px;
-            font-size: 10px;
+            font-size: 0.625rem;
         }
 
         .slice-box.header {
-            background: #e2e8f0;
-            color: #4a5568;
-            font-size: 8px;
+            background: var(--secondary);
+            color: var(--muted-foreground);
+            font-size: 0.5rem;
         }
 
         .slice-box.value {
-            font-weight: bold;
+            font-weight: 600;
         }
 
         .slice-box.positive {
             background: rgba(229, 62, 62, 0.15);
-            color: #276749;
+            color: var(--good);
         }
 
         .slice-box.negative {
             background: rgba(56, 161, 105, 0.15);
-            color: #c53030;
+            color: var(--bad);
         }
 
         .slice-box.zero {
-            background: rgba(113, 128, 150, 0.15);
-            color: #4a5568;
+            background: var(--secondary);
+            color: var(--muted-foreground);
         }
 
 
@@ -690,15 +740,16 @@
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
-            background: #e53e3e;
-            color: #fff;
+            background: var(--foreground);
+            color: var(--background);
             padding: 10px 20px;
-            border-radius: 6px;
-            font-weight: 600;
-            font-size: 13px;
+            border-radius: var(--radius);
+            font-weight: 500;
+            font-size: 0.875rem;
             opacity: 0;
             transition: all 0.3s;
             z-index: 1000;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
         }
 
         .toast.show {
@@ -724,31 +775,36 @@
         }
 
         .tutorial-content {
-            background: #fff;
-            border-radius: 12px;
+            background: var(--card);
+            border-radius: var(--radius);
             padding: 24px;
             max-width: 550px;
             max-height: 85vh;
             overflow-y: auto;
+            border: 1px solid var(--border);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
         }
 
         .tutorial-content h2 {
-            color: #2c3e50;
+            color: var(--foreground);
             margin-bottom: 16px;
-            font-size: 1.3rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.025em;
         }
 
         .tutorial-content h4 {
-            color: #3182ce;
+            color: var(--foreground);
             margin: 16px 0 8px;
-            font-size: 0.95rem;
+            font-size: 0.875rem;
+            font-weight: 600;
         }
 
         .tutorial-content p, .tutorial-content li {
             line-height: 1.6;
-            color: #4a5568;
+            color: var(--muted-foreground);
             margin-bottom: 8px;
-            font-size: 14px;
+            font-size: 0.875rem;
         }
 
         .tutorial-content ul {
@@ -756,10 +812,11 @@
         }
 
         .tutorial-content code {
-            background: #f7fafc;
+            background: var(--muted);
             padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 12px;
+            border-radius: calc(var(--radius) - 4px);
+            font-size: 0.75rem;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
 
         .close-tutorial {
@@ -769,8 +826,8 @@
         .ua-markers {
             position: absolute;
             display: flex;
-            font-size: 9px;
-            font-weight: bold;
+            font-size: 0.5625rem;
+            font-weight: 600;
             opacity: 0;
             transition: opacity 0.3s;
             z-index: 15;
@@ -812,15 +869,15 @@
         }
 
         .ua-marker.positive {
-            color: #e53e3e;
+            color: var(--bad);
         }
 
         .ua-marker.negative {
-            color: #38a169;
+            color: var(--good);
         }
 
         .ua-marker.zero {
-            color: #718096;
+            color: var(--muted-foreground);
         }
 
         .bottom-pane {
@@ -830,23 +887,26 @@
         }
 
         .bottom-left {
-            background: #fff;
-            border-radius: 10px;
-            padding: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
         }
 
         .bottom-right {
-            background: #fff;
-            border-radius: 10px;
-            padding: 16px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
         }
 
         .bottom-left h3,
         .bottom-right h3 {
-            color: #2c3e50;
-            font-size: 0.95rem;
+            color: var(--card-foreground);
+            font-size: 0.875rem;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -881,7 +941,7 @@
             }
 
             header p {
-                font-size: 0.9rem;
+                font-size: 0.8125rem;
             }
 
             .board-section {
@@ -893,8 +953,9 @@
             }
 
             .btn {
-                padding: 8px 12px;
-                font-size: 12px;
+                height: 2rem;
+                padding: 0 0.75rem;
+                font-size: 0.75rem;
             }
         }
 
@@ -1028,20 +1089,20 @@
         <div class="bottom-pane">
             <div class="card">
                 <h3>References</h3>
-                <div style="font-size: 12px; line-height: 1.6;">
+                <div style="font-size: 0.75rem; line-height: 1.6; color: var(--muted-foreground);">
                     <p style="margin-bottom: 8px;">
-                        <a href="https://docs.google.com/document/d/1HVZ16CDjVmcH_fK2l3giedqwForgpnLmB5aRF_j1pmc/edit?tab=t.0#heading=h.wc0r227g8i1a" target="_blank" style="color: #3182ce; text-decoration: none;">Maxim Glaezer's CCC Method Paper</a>
+                        <a href="https://docs.google.com/document/d/1HVZ16CDjVmcH_fK2l3giedqwForgpnLmB5aRF_j1pmc/edit?tab=t.0#heading=h.wc0r227g8i1a" target="_blank" style="color: var(--foreground); text-decoration: underline; text-underline-offset: 2px;">Maxim Glaezer's CCC Method Paper</a>
                     </p>
                     <p>
-                        <a href="https://www.bgonline.org/forums/webbbs_config.pl?noframes;read=208404" target="_blank" style="color: #3182ce; text-decoration: none;">Nack Ballard's Explanation</a>
+                        <a href="https://www.bgonline.org/forums/webbbs_config.pl?noframes;read=208404" target="_blank" style="color: var(--foreground); text-decoration: underline; text-underline-offset: 2px;">Nack Ballard's Explanation</a>
                     </p>
                 </div>
             </div>
             <div class="card">
                 <h3>Legend</h3>
-                <div style="font-size: 12px; line-height: 1.6;">
-                    <p><span style="color:#38a169;font-weight:bold">Green / negative</span> = good for the race</p>
-                    <p><span style="color:#e53e3e;font-weight:bold">Red / positive</span> = bad for the race</p>
+                <div style="font-size: 0.75rem; line-height: 1.6; color: var(--muted-foreground);">
+                    <p><span style="color:var(--good);font-weight:600">Green / negative</span> = good for the race</p>
+                    <p><span style="color:var(--bad);font-weight:600">Red / positive</span> = bad for the race</p>
                 </div>
             </div>
         </div>
@@ -1105,6 +1166,7 @@
         const board = new Array(27).fill(0);
         let currentStep = null;
         let currentPositionIndex = null;
+        let currentXGID = null;
 
         const xgidArray = [
             "XGID=-b--ABD-CA--bB---b-c-Bbbb-:0:0:1:00:1:0:3:0:10",
@@ -1237,6 +1299,9 @@
         }
 
         function boardToXGID() {
+            if (currentXGID) {
+                return currentXGID;
+            }
             let xgid = 'XGID=';
             for (let i = 0; i < 26; i++) {
                 const v = board[i];
@@ -1248,6 +1313,7 @@
                     xgid += String.fromCharCode('a'.charCodeAt(0) + v - 1);
                 }
             }
+            xgid += ':0:0:1:00:0:0:0:0:10';
             return xgid;
         }
 
@@ -1270,6 +1336,7 @@
             newBoard[19] = 5;
             newBoard[24] = -2;
             setBoard(newBoard);
+            currentXGID = null;
         }
 
         function randomFromList() {
@@ -1278,6 +1345,7 @@
             }
             const index = Math.floor(Math.random() * xgidArray.length);
             const xgid = xgidArray[index];
+            currentXGID = xgid;
             const newBoard = parseXGID(xgid);
             setBoard(newBoard);
             currentPositionIndex = index + 1;
@@ -1321,6 +1389,7 @@
 
             setBoard(newBoard);
             currentPositionIndex = null;
+            currentXGID = null;
         }
 
         function pipCountBlack(b) {
@@ -1442,7 +1511,7 @@
             if (calc.total === actualDiff) {
                 compEl.innerHTML = '';
             } else {
-                compEl.innerHTML = `<span style="color: #38a169;">✗ CCC: ${calc.total} vs Actual: ${actualDiff}</span>`;
+                compEl.innerHTML = `<span style="color: var(--good);">✗ CCC: ${calc.total} vs Actual: ${actualDiff}</span>`;
             }
         }
 
@@ -1821,7 +1890,7 @@
                     divider.style.position = 'absolute';
                     divider.style.width = '4px';
                     divider.style.height = '90%';
-                    divider.style.backgroundColor = '#3182ce';
+                    divider.style.backgroundColor = 'var(--foreground)';
                     divider.style.right = '-1px';
                     divider.style.zIndex = '5';
                     if (dp.half === 'top') {
@@ -2095,11 +2164,11 @@
                     text: `
                         <p>The board shows <strong>6 zones</strong> with calculated values:</p>
                         <ul>
-                            <li><span style="color:#38a169;font-weight:bold">green</span> = negative values</li>
-                            <li><span style="color:#e53e3e;font-weight:bold">red</span> = positive values</li>
+                            <li><span style="color:var(--good);font-weight:600">green</span> = negative values</li>
+                            <li><span style="color:var(--bad);font-weight:600">red</span> = positive values</li>
                         </ul>
-                        <p style="font-size:12px;color:#666;margin-top:8px;">
-                            <em>The leftmost zones count double, as described in the <a href="https://docs.google.com/document/d/1HVZ16CDjVmcH_fK2l3giedqwForgpnLmB5aRF_j1pmc/edit?tab=t.0#heading=h.wc0r227g8i1a" target="_blank" style="color:#3182ce;">CCC Method Paper</a>.</em>
+                        <p style="font-size:0.75rem;color:var(--muted-foreground);margin-top:8px;">
+                            <em>The leftmost zones count double, as described in the <a href="https://docs.google.com/document/d/1HVZ16CDjVmcH_fK2l3giedqwForgpnLmB5aRF_j1pmc/edit?tab=t.0#heading=h.wc0r227g8i1a" target="_blank" style="color:var(--foreground);text-decoration:underline;">CCC Method Paper</a>.</em>
                         </p>
                         <p><strong>Calculate:</strong> Sum all the values shown.</p>
                     `
@@ -2110,13 +2179,13 @@
                     text: `
                         <p>The board highlights checkers in <strong>"enemy territory"</strong>:</p>
                         <ul>
-                            <li>White checkers on the opposite side = <span style="color:#e53e3e;font-weight:bold">bad(red)</span></li>
-                            <li>Black checkers on our side = <span style="color:#38a169;font-weight:bold">good(green)</span></li>
+                            <li>White checkers on the opposite side = <span style="color:var(--bad);font-weight:600">bad(red)</span></li>
+                            <li>Black checkers on our side = <span style="color:var(--good);font-weight:600">good(green)</span></li>
                         </ul>
                         <p><strong>Calculate:</strong></p>
                         <ol style="margin-left:16px;">
-                            <li>Count white checkers on top (<span style="color:#e53e3e;font-weight:bold">bad(red)</span>)</li>
-                            <li>Subtract black checkers on bottom (<span style="color:#38a169;font-weight:bold">good(green)</span>)</li>
+                            <li>Count white checkers on top (<span style="color:var(--bad);font-weight:600">bad(red)</span>)</li>
+                            <li>Subtract black checkers on bottom (<span style="color:var(--good);font-weight:600">good(green)</span>)</li>
                             <li>Multiply the result by 5</li>
                         </ol>
                     `
@@ -2125,11 +2194,11 @@
                     name: 'UA',
                     title: 'Unit Adjustment (UA)',
                     text: `
-                        <p><span style="color:#3182ce;font-weight:bold">Blue Dividers</span> mark 8 zones (3 points each). Within each zone, the center point is <strong>0</strong>, the outer edge (furthest from home) is <strong>+1</strong>, and the inner edge (closest to home) is <strong>-1</strong>.</p>
+                        <p><span style="color:var(--foreground);font-weight:600">Dividers</span> mark 8 zones (3 points each). Within each zone, the center point is <strong>0</strong>, the outer edge (furthest from home) is <strong>+1</strong>, and the inner edge (closest to home) is <strong>-1</strong>.</p>
                         <p><strong>Finding Asymmetric Checkers:</strong> In each zone, cancel out checkers on the +1 edge against those on the -1 edge (ignore color). Only unpaired checkers count:</p>
                         <ul>
-                            <li><span style="color:#e53e3e;font-weight:bold">Bad (+1)</span>: Excess checkers on the outer edge (furthest from home).</li>
-                            <li><span style="color:#38a169;font-weight:bold">Good (-1)</span>: Excess checkers on the inner edge (closest to home).</li>
+                            <li><span style="color:var(--bad);font-weight:600">Bad (+1)</span>: Excess checkers on the outer edge (furthest from home).</li>
+                            <li><span style="color:var(--good);font-weight:600">Good (-1)</span>: Excess checkers on the inner edge (closest to home).</li>
                         </ul>
                         <p><strong>Calculate:</strong> Sum these values across all 8 zones.</p>
                     `
@@ -2147,8 +2216,8 @@
                         <p>The sign depends on who benefits from these adjustments.<br>Opponent's checkers on the bar and your borne off checkers benefit you.</p>
                         <p>Adjustments for checkers on the <strong>bar</strong> and <strong>borne off</strong>:</p>
                         <ul>
-                            <li><span style="color:#38a169;font-weight:bold">good(green)</span>: black bar (−20 each), white off (−5 each)</li>
-                            <li><span style="color:#e53e3e;font-weight:bold">bad(red)</span>: white bar (+20 each), black off (+5 each)</li>
+                            <li><span style="color:var(--good);font-weight:600">good(green)</span>: black bar (−20 each), white off (−5 each)</li>
+                            <li><span style="color:var(--bad);font-weight:600">bad(red)</span>: white bar (+20 each), black off (+5 each)</li>
                         </ul>
                         <p><strong>Calculate:</strong> Sum all bar/off values.</p>
                     `
@@ -2158,7 +2227,7 @@
                     title: 'Final Calculation',
                     text: `
                         <p><strong>Formula:</strong></p>
-                        <p style="margin-left:8px;font-size:16px;font-weight:bold;color:#2d3748;">
+                        <p style="margin-left:8px;font-size:1rem;font-weight:600;color:var(--foreground);">
                             Pip Diff = (Step 1 + Step 2) x 3 + UA + BB
                         </p>
                         <p style="margin-top:12px;"><strong>Breakdown:</strong></p>
@@ -2168,7 +2237,7 @@
                             <li>Add UA</li>
                             <li>Add BB</li>
                         </ol>
-                        <p style="font-size:12px;color:#666;margin-top:8px;">
+                        <p style="font-size:0.75rem;color:var(--muted-foreground);margin-top:8px;">
                             <em>The result is the exact pip count difference (White − Black). Negative means we are ahead in the race.</em>
                         </p>
                     `
