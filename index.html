@@ -565,9 +565,6 @@
         }
 
         .calculation-display {
-            background: var(--muted);
-            border-radius: calc(var(--radius) - 2px);
-            padding: 12px;
             font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
             font-size: 0.6875rem;
             line-height: 1.7;
@@ -586,10 +583,10 @@
         }
 
         .calc-row.highlight {
-            background: var(--accent);
-            margin: 4px -12px -12px -12px;
-            padding: 6px 12px;
-            border-radius: 0 0 calc(var(--radius) - 2px) calc(var(--radius) - 2px);
+            background: var(--secondary);
+            margin: 4px 0 0 0;
+            padding: 6px 8px;
+            border-radius: calc(var(--radius) - 2px);
             border: none;
         }
 
@@ -612,7 +609,7 @@
         }
 
         .result-box {
-            background: var(--muted);
+            background: var(--background);
             border-radius: calc(var(--radius) - 2px);
             padding: 12px;
             text-align: center;
@@ -660,9 +657,6 @@
         }
 
         .explanation-box {
-            background: var(--muted);
-            padding: 12px;
-            border-radius: calc(var(--radius) - 2px);
         }
 
         .explanation-box h4 {
@@ -698,7 +692,7 @@
             gap: 3px;
             margin: 10px 0;
             padding: 8px;
-            background: var(--muted);
+            background: var(--background);
             border-radius: calc(var(--radius) - 2px);
         }
 
@@ -812,7 +806,7 @@
         }
 
         .tutorial-content code {
-            background: var(--muted);
+            background: var(--secondary);
             padding: 2px 6px;
             border-radius: calc(var(--radius) - 4px);
             font-size: 0.75rem;
